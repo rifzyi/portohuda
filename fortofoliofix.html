@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Miftakhul Huda | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&family=Plus+Jakarta+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        :root {
+            --bg-dark: #05070a;
+            --accent: #00d2ff;
+            --accent-2: #3a7bd5;
+            --text-light: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-light); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background Particles */
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        /* Layout Sections */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 10%;
+            position: relative;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            text-align: center;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Navigation */
+        nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        nav a {
+            width: 12px;
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transition: 0.4s;
+            border: 2px solid transparent;
+        }
+
+        nav a:hover, nav a.active {
+            background: var(--accent);
+            transform: scale(1.5);
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        /* Hero Section */
+        .hero-container { text-align: center; }
+        
+        .profile-frame {
+            width: 220px;
+            height: 220px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: linear-gradient(45deg, var(--accent), var(--accent-2));
+            padding: 7px;
+            animation: morph 8s ease-in-out infinite;
+            margin: 0 auto 30px;
+            box-shadow: 0 20px 50px rgba(0, 210, 255, 0.3);
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%; }
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            object-fit: cover;
+            border: 5px solid var(--bg-dark);
+        }
+
+        .hero-name { font-size: 4rem; font-weight: 800; letter-spacing: -1px; line-height: 1; }
+        .hero-tagline { font-size: 1.2rem; color: var(--accent); letter-spacing: 5px; margin: 20px 0; font-weight: 500; }
+
+        /* Social Icons */
+        .social-btn {
+            display: inline-flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-btn a {
+            width: 50px;
+            height: 50px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .social-btn a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+            color: var(--bg-dark);
+        }
+
+        /* Glass Cards */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
+
+        .box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            transition: 0.4s;
+        }
+
+        .box:hover {
+            border-color: var(--accent);
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-10px);
+        }
+
+        /* Experience Timeline */
+        .timeline { width: 100%; max-width: 800px; }
+        .timeline-item {
+            padding: 20px 30px;
+            border-left: 3px solid var(--accent);
+            position: relative;
+            margin-bottom: 20px;
+            background: var(--glass);
+            border-radius: 0 20px 20px 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -11px;
+            top: 25px;
+            width: 18px;
+            height: 18px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            width: 100%;
+        }
+
+        .skill-bar-container { margin-bottom: 20px; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .progress-bg { height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; }
+        .progress-fill { 
+            height: 100%; 
+            background: linear-gradient(90deg, var(--accent), var(--accent-2)); 
+            border-radius: 5px; 
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        /* Tools */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .tool-card {
+            background: var(--glass);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+        }
+
+        .tool-card i { font-size: 2rem; color: var(--accent); margin-bottom: 10px; }
+
+        /* Certificates */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
+
+        .cert-card {
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+        }
+
+        .cert-img-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .cert-img-wrapper img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .cert-card:hover img { transform: scale(1.1); }
+
+        .cert-body { padding: 20px; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .skills-container { grid-template-columns: 1fr; }
+            .hero-name { font-size: 2.5rem; }
+            section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <nav>
+        <a href="#home" class="active"></a>
+        <a href="#education"></a>
+        <a href="#experience"></a>
+        <a href="#organization"></a>
+        <a href="#skills"></a>
+        <a href="#awards"></a>
+    </nav>
+
+    <section id="home">
+        <div class="hero-container" data-aos="zoom-in">
+            <div class="profile-frame">
+                <img src="c:\Users\User\Downloads\WhatsApp Image 2026-01-11 at 12.25.15.jpeg" alt="Muhammad Miftakhul Huda">
+            </div>
+            <h1 class="hero-name">MUHAMMAD<br><span style="color: var(--accent);">MIFTAKHUL HUDA</span></h1>
+            <p class="hero-tagline">ACCOUNTING • SALES • MANAGEMENT</p>
+            
+            <div class="social-btn">
+                <a href="mailto:muhammadmiftakhulhuda886@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://wa.me/6289601527095"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2 data-aos="fade-up">Akademik</h2>
+        <div class="content-grid">
+            <div class="box" data-aos="fade-up" data-aos-delay="100">
+                <p style="color: var(--accent); font-weight: bold;">2022 - SEKARANG</p>
+                <h3 style="margin: 10px 0;">INSTITUT TEKNOLOGI DAN BISNIS TUBAN</h3>
+                <p style="opacity: 0.7;">Sedang menempuh pendidikan tinggi dengan fokus pada bisnis dan teknologi.</p>
+            </div>
+            <div class="box" data-aos="fade-up" data-aos-delay="200">
+                <p style="color: var(--accent); font-weight: bold;">2019 - 2022</p>
+                <h3>MA AL FALAH</h3>
+                <p style="opacity: 0.7;">Pendidikan Menengah Atas.</p>
+            </div>
+            <div class="box" data-aos="fade-up" data-aos-delay="300">
+                <p style="color: var(--accent); font-weight: bold;">2011 - 2017</p>
+                <h3>MI AL IMAN</h3>
+                <p style="opacity: 0.7;">Pendidikan Dasar.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 data-aos="fade-up">Karier Profesi</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-left">
+                <span style="color: var(--accent); font-weight: 800;">2025</span>
+                <h3 style="margin-top: 5px;">MAGANG CV. TOSERBA SUNAN DRAJAT</h3>
+                <p style="margin-top: 10px; opacity: 0.8;">Mendalami manajemen operasional retail: Tata letak barang (display), sistem kasir, manajemen pergudangan, hingga kepemimpinan operasional.</p>
+            </div>
+            <div class="timeline-item" data-aos="fade-left" data-aos-delay="100">
+                <span style="color: var(--accent); font-weight: 800;">2020</span>
+                <h3 style="margin-top: 5px;">FOOD & BEVERAGE SPECIALIST</h3>
+                <p style="margin-top: 10px; opacity: 0.8;">Bertanggung jawab atas laporan keuangan harian, estetika visual toko, dan administrasi menggunakan Ms. Office (Word & Excel).</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="organization" style="background: rgba(255,255,255,0.01);">
+        <h2 data-aos="fade-up">Kepemimpinan</h2>
+        <div class="content-grid">
+            <div class="box" data-aos="flip-left">
+                <i class="fas fa-crown" style="font-size: 2rem; color: gold; margin-bottom: 15px;"></i>
+                <h4>Ketua PAC IPNU IPPNU Bangilan</h4>
+                <p style="color: var(--accent); font-size: 0.8rem;">Masa Khidmat 2025 - 2027</p>
+            </div>
+            <div class="box" data-aos="flip-left" data-aos-delay="100">
+                <i class="fas fa-certificate" style="font-size: 2rem; color: var(--accent); margin-bottom: 15px;"></i>
+                <h4>Kaderisasi PC IPNU IPPNU Tuban</h4>
+                <p style="color: var(--accent); font-size: 0.8rem;">2024 - 2026</p>
+            </div>
+            <div class="box" data-aos="flip-left" data-aos-delay="200">
+                <i class="fas fa-bullhorn" style="font-size: 2rem; color: #ff4757; margin-bottom: 15px;"></i>
+                <h4>WAKABID Organisasi DPC GMNI ITB Tuban</h4>
+                <p style="color: var(--accent); font-size: 0.8rem;">2024 - 2025</p>
+            </div>
+            <div class="box" data-aos="flip-left">
+                <i class="fas fa-crown" style="font-size: 2rem; color: gold; margin-bottom: 15px;"></i>
+                <h4>Ketua PR IPNU IPPNU Weden</h4>
+                <p style="color: var(--accent); font-size: 0.8rem;"> 2020 - 2023</p>
+            </div>
+            <div class="box" data-aos="flip-left" data-aos-delay="200">
+                <i class="fas fa-bullhorn" style="font-size: 2rem; color: #ff4757; margin-bottom: 15px;"></i>
+                <h4>Wakil Ketua Saka Wirakartika </h4>
+                <p style="color: var(--accent); font-size: 0.8rem;">2023 - 2024</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 data-aos="fade-up">Keahlian Utama</h2>
+        <div class="skills-container">
+            <div data-aos="fade-right">
+                <div class="skill-bar-container">
+                    <div class="skill-info"><span>Public Speaking</span><span>90%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-info"><span>Excel & Accounting</span><span>85%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-info"><span>Strategic Sales</span><span>80%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 80%;"></div></div>
+                </div>
+            </div>
+            <div class="tools-grid" data-aos="fade-left">
+                <div class="tool-card"><i class="fab fa-microsoft"></i><p>Excel</p></div>
+                <div class="tool-card"><i class="fas fa-file-word"></i><p>Word</p></div>
+                <div class="tool-card"><i class="fas fa-chart-line"></i><p>Accounting</p></div>
+                <div class="tool-card"><i class="fab fa-canva"></i><p>Design</p></div>
+                <div class="tool-card"><i class="fas fa-presentation-screen"></i><p>PPT</p></div>
+                <div class="tool-card"><i class="fas fa-users-gear"></i><p>ERP</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="awards">
+        <h2 data-aos="fade-up">Bukti Kompetensi</h2>
+        <div class="cert-grid">
+            <div class="cert-card" data-aos="zoom-in">
+                <div class="cert-img-wrapper">
+                    <img src="c:\Users\User\Downloads\sertifikat1.jpeg" alt="Sertifikat Dinkes">
+                </div>
+                <div class="cert-body">
+                    <p style="font-size: 0.9rem;">Dinas Kesehatan Kabupaten Tuban</p>
+                </div>
+            </div>
+            <div class="cert-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="cert-img-wrapper">
+                    <img src="c:\Users\User\Downloads\sertifikat3.jpeg" alt="Sertifikat KODAM">
+                </div>
+                <div class="cert-body">
+                    <p style="font-size: 0.9rem;">KODAM V BRAWIJAYA</p>
+                </div>
+            </div>
+            <div class="cert-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="cert-img-wrapper">
+                    <img src="c:\Users\User\Downloads\sertifikat2.jpeg" alt="Sertifikat ITB">
+                </div>
+                <div class="cert-body">
+                    <p style="font-size: 0.9rem;">Institut Teknologi dan Bisnis Tuban</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer style="margin-top: 80px; text-align: center; opacity: 0.6;">
+            <p>&copy; 2026 | Muhammad Miftakhul Huda</p>
+            <p style="font-size: 0.8rem; color: var(--accent);">Accounting & Sales Professional</p>
+        </footer>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Inisialisasi Animasi saat Scroll
+        AOS.init({ duration: 1000, once: true });
+
+        // Script untuk navigasi aktif
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
